@@ -1,8 +1,20 @@
+const Campground = require("../models/campgroundModel");
+
+
 // @desc    get all the campgrounds
 // @route   /api/campgrounds
 // @access  Public
-const getCampgrounds = (req,res) => {
-  res.send("get campgrounds");
+const getCampgrounds = async (req,res) => {
+  const camp = new Campground({
+    title: "test",
+    price: 69,
+    description: "test",
+    location: "test",
+  })
+
+  await camp.save();
+
+  res.send(camp);
 }
 
 
