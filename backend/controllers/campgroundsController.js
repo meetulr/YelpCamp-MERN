@@ -11,7 +11,7 @@ const getCampgrounds = async (req, res) => {
 
 
 // @desc    get all the campgrounds
-// @route   /api/campgrounds
+// @route   /api/campgrounds/new
 // @access  Private
 const createCampground = async (req, res) => {
   const campground = new Campground(req.body.campground);
