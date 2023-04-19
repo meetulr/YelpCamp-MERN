@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
 import New from "./pages/New";
@@ -8,7 +9,7 @@ import Edit from "./pages/Edit";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Router>
         <Navbar />
         <Routes>
@@ -18,8 +19,9 @@ function App() {
           <Route path="/api/campgrounds/:id" element={<Campground />} />
           <Route path="/api/campgrounds/:id/edit" element={<Edit />} />
         </Routes>
+        <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 
