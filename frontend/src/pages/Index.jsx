@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CampgroundContext from "../contexts/campground/campgroundContext";
 import { getCampgrounds } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
-// import IndexCampground from "../components/IndexCampground";
+import IndexCampground from "../components/IndexCampground";
 
 
 function Index() {
@@ -44,9 +44,9 @@ function Index() {
     <div className="mx-6">
       <h1 className="text-3xl font-bold my-5">All Campgrounds</h1>
 
-      <div>
+      <div className="flex flex-wrap space-y-5 md:space-y-10 mx-auto justify-around">
         {campgrounds.map((campground) => (
-          <Link to={`/campgrounds/${campground._id}`} className="block" key={campground._id}>{campground.title}</Link>
+          <IndexCampground key={campground._id} campground={campground} />
         ))}
       </div>
     </div>
