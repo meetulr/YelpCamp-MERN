@@ -6,7 +6,7 @@ const Campground = require("../models/campgroundModel");
 // @access  Public
 const getCampgrounds = async (req, res) => {
   const campgrounds = await Campground.find();
-  res.send(campgrounds);
+  res.json(campgrounds);
 }
 
 
@@ -24,6 +24,7 @@ const createCampground = async (req, res) => {
 // @route   /api/campgrounds/:id
 // @access  Public
 const getCampground = async (req, res) => {
+  console.log("hitting");
   const campground = await Campground.findById(req.params.id);
   res.json(campground);
 }
