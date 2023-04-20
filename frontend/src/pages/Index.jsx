@@ -42,7 +42,7 @@ function Index() {
 
   return (
     <div className="mx-6">
-      <h1 className="text-3xl font-bold my-5">All Campgrounds</h1>
+      <h1 className="text-3xl text-center font-bold mt-10 mb-0">All Campgrounds</h1>
 
       <div className="flex flex-wrap space-y-5 md:space-y-10 mx-auto justify-around">
         {campgrounds.map((campground) => (
