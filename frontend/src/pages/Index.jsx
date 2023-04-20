@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CampgroundContext from "../contexts/campground/campgroundContext";
 import { getCampgrounds } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
-import IndexCampground from "../components/IndexCampground";
+// import IndexCampground from "../components/IndexCampground";
 
 
 function Index() {
@@ -15,14 +15,22 @@ function Index() {
         type: "SET_LOADING"
       })
 
-      const data = await getCampgrounds();
+      try {
+        const data = await getCampgrounds();
 
-      dispatch({
-        type: "GET_CAMPGROUNDS",
-        payload: data
-      })
+        dispatch({
+          type: "GET_CAMPGROUNDS",
+          payload: data
+        })
 
-      console.log(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+
+        dispatch({
+          type: "STOP_LOADING"
+        })
+      }
     }
 
     fetchCampgrounds();
@@ -38,7 +46,7 @@ function Index() {
 
       <div>
         {campgrounds.map((campground) => (
-          <Link to={`${campground._id}`} key={campground._id}><IndexCampground campground={campground} /></Link>
+          <Link to={`/campgrounds/${campground._id}`} className="block" key={campground._id}>{campground.title}</Link>
         ))}
       </div>
     </div>

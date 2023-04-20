@@ -16,10 +16,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/api/campgrounds" element={<Index />} />
-            <Route path="/api/campgrounds/new" element={<New />} />
-            <Route path="/api/campgrounds/:id" element={<Show />} />
-            <Route path="/api/campgrounds/:id/edit" element={<Edit />} />
+            <Route path="/campgrounds" element={<Index />} />
+            <Route path="/campgrounds/new" element={<New />} />
+            <Route path="/campgrounds/:campgroundId" element={<Show />} />
+            <Route path="/campgrounds/:campgroundId/edit" element={<Edit />} />
           </Routes>
           <Footer />
         </Router>

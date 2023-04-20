@@ -13,10 +13,10 @@ function Navbar() {
               <Link to="/" className="p-3">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link to="/api/campgrounds" className="p-3">Campgrounds</Link>
+              <Link to="/campgrounds" className="p-3">Campgrounds</Link>
             </li>
             <li>
-              <Link to="/api/campgrounds/new" className="p-3">New Campground</Link>
+              <Link to="/campgrounds/new" className="p-3">New Campground</Link>
             </li>
           </ul>
         </div>
