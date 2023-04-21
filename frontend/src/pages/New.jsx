@@ -32,17 +32,19 @@ function New() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!title || !location || !price || !description || !image){
+    if (!title || !location || !price || !description || !image) {
       toast.error("Please fill out all fields");
       return;
     }
 
     const campgroundData = {
-      title,
-      location,
-      price,
-      description,
-      image
+      campground: {
+        title,
+        location,
+        price,
+        description,
+        image
+      }
     }
 
     dispatch({
@@ -50,11 +52,13 @@ function New() {
     })
 
     try {
-      const data = await createCampground(campgroundData);      
+      const data = await createCampground(campgroundData);
       console.log(data);
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {
       console.log(error);
+      const message = error.response.data.message;
+      toast.error(message);
     }
 
     dispatch({
@@ -105,7 +109,7 @@ function New() {
               aria-label="price"
               value={price}
               onChange={handleChange}
- />
+            />
           </div>
         </div>
 

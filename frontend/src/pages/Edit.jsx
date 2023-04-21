@@ -81,11 +81,13 @@ function New() {
     }
 
     const campgroundData = {
-      title,
-      location,
-      price,
-      description,
-      image
+      campground: {
+        title,
+        location,
+        price,
+        description,
+        image
+      }
     }
 
     dispatch({
@@ -98,6 +100,8 @@ function New() {
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {
       console.log(error);
+      const message = error.response.data.message;
+      toast.error(message);
     }
 
     dispatch({

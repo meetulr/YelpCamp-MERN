@@ -16,8 +16,7 @@ const getCampgrounds = async (req, res) => {
 // @access  Private
 const createCampground = async (req, res) => {
   console.log("hitting create campground");
-  const campgroundData = req.body;
-  const campground = new Campground(campgroundData);
+  const campground = new Campground(req.body.campground);
   await campground.save();
   res.json(campground);
 }
@@ -39,8 +38,7 @@ const getCampground = async (req, res) => {
 const updateCampground = async (req, res) => {
   console.log("hitting update campground");
   const { id } = req.params;
-  const campgroundData = req.body;
-  const campground = await Campground.findByIdAndUpdate(id, campgroundData, { new: true });
+  const campground = await Campground.findByIdAndUpdate(id, req.body.campground, { new: true });
   res.json(campground);
 }
 
