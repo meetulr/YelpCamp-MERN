@@ -20,7 +20,7 @@ export const createCampground = async (campgroundData) => {
   return res.data;
 }
 
-// updateCampground
+// update campground
 export const updateCampground = async (campgroundId, campgroundData) => {
   const res = await axios.put(API_URL + campgroundId, campgroundData);
   return res.data;

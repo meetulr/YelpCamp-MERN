@@ -17,7 +17,6 @@ const getCampgrounds = async (req, res) => {
 const createCampground = async (req, res) => {
   console.log("hitting create campground");
   const campgroundData = req.body;
-  campgroundData.image = "https://source.unsplash.com/collection/483251";
   const campground = new Campground(campgroundData);
   await campground.save();
   res.json(campground);
@@ -41,7 +40,6 @@ const updateCampground = async (req, res) => {
   console.log("hitting update campground");
   const { id } = req.params;
   const campgroundData = req.body;
-  campgroundData.image = "https://source.unsplash.com/collection/483251";
   const campground = await Campground.findByIdAndUpdate(id, campgroundData, { new: true });
   res.json(campground);
 }

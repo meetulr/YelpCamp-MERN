@@ -8,11 +8,12 @@ function New() {
   const [formData, setFormData] = useState({
     title: "",
     location: "",
-    price: null,
-    description: ""
+    price: undefined,
+    description: "",
+    image: ""
   });
 
-  const { title, location, price, description } = formData;
+  const { title, location, price, description, image } = formData;
 
 
   const { campground, loading, dispatch } = useContext(CampgroundContext);
@@ -54,7 +55,8 @@ function New() {
       title: data.title,
       location: data.location,
       price: data.price,
-      description: data.description
+      description: data.description,
+      image: data.image
     })
   }
 
@@ -77,6 +79,7 @@ function New() {
       location,
       price,
       description,
+      image
     }
 
     dispatch({
@@ -157,12 +160,24 @@ function New() {
           ></textarea>
         </div>
 
-        <div class="mb-6">
+        <div className="mb-6">
+          <label className="block mb-2 font-bold text-gray-700" for="image">Enter Image URL</label>
+          <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
+            type="text"
+            id="image"
+            placeholder="https://source.unsplash.com/collection/483251"
+            value={image}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* <div class="mb-6">
           <label for="images" className="block mb-2 font-bold text-gray-700">Choose Images</label>
           <input type="file" className="file-input file-input-md w-full  text-gray-700 bg-gray-200"
             id="images"
             multiple />
-        </div>
+        </div> */}
 
         <div className="flex justify-end">
           <button className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400" type="submit">Submit</button>
