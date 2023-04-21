@@ -3,6 +3,7 @@ import CampgroundContext from "../contexts/campground/campgroundContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getCampground, updateCampground } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
 
 function New() {
   const [formData, setFormData] = useState({
@@ -74,6 +75,11 @@ function New() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!title || !location || !price || !description || !image){
+      toast.error("Please fill out all fields");
+      return;
+    }
+
     const campgroundData = {
       title,
       location,
@@ -116,7 +122,6 @@ function New() {
             placeholder="eg. Petrified Pond"
             value={title}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -128,7 +133,6 @@ function New() {
             placeholder="eg. Scottsdale, Arizona"
             value={location}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -144,7 +148,7 @@ function New() {
               aria-label="price"
               value={price}
               onChange={handleChange}
-              required />
+ />
           </div>
         </div>
 
@@ -156,7 +160,6 @@ function New() {
             placeholder="Describe your camp in concise words"
             value={description}
             onChange={handleChange}
-            required
           ></textarea>
         </div>
 
@@ -168,7 +171,6 @@ function New() {
             placeholder="https://source.unsplash.com/collection/483251"
             value={image}
             onChange={handleChange}
-            required
           />
         </div>
 
