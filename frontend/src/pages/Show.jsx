@@ -43,7 +43,7 @@ function Show() {
   }
 
   return (
-    <div>
+    <div className="max-w-xl mx-auto my-10">
       <img src={campground.image} alt="" />
     </div>
   )

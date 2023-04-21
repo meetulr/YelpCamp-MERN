@@ -41,10 +41,10 @@ function Index() {
   }
 
   return (
-    <div className="mx-6">
+    <div className="mx-6 my-14">
       <h1 className="text-3xl text-center font-bold mt-10 mb-0">All Campgrounds</h1>
 
-      <div className="flex flex-wrap space-y-5 md:space-y-10 mx-auto justify-around">
+      <div className="flex flex-wrap space-y-7 md:space-y-10 mx-auto justify-around">
         {campgrounds.map((campground) => (
           <IndexCampground key={campground._id} campground={campground} />
         ))}

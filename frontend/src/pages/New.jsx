@@ -1,7 +1,7 @@
 
 function New() {
   return (
-    <div className="my-10">
+    <div className="mt-24 mb-10">
       <form className="p-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto bg-white rounded-md shadow-md">
         <div className="mb-6">
           <label className="block mb-2 font-bold text-gray-700" for="name">Title</label>
