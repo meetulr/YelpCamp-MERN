@@ -1,16 +1,17 @@
 const express = require("express");
 const campgrounds = require("../controllers/campgroundsController");
 const router = express.Router();
+const catchAsync = require("../utils/catchAsync");
 
 router.route("/")
-  .get(campgrounds.getCampgrounds)
-  .post(campgrounds.createCampground)
+  .get(catchAsync(campgrounds.getCampgrounds))
+  .post(catchAsync(campgrounds.createCampground))
 
   
 router.route("/:id")
-  .get(campgrounds.getCampground)
-  .put(campgrounds.updateCampground)
-  .delete(campgrounds.deleteCampground)
+  .get(catchAsync(campgrounds.getCampground))
+  .put(catchAsync(campgrounds.updateCampground))
+  .delete(catchAsync(campgrounds.deleteCampground))
 
 
 module.exports = router;

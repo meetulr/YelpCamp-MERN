@@ -6,7 +6,10 @@ import Index from "./pages/Index";
 import New from "./pages/New";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
+import PageNotFound from "./pages/PageNotFound";
 import { CampgroundProvider } from "./contexts/campground/campgroundContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -20,9 +23,11 @@ function App() {
             <Route path="/campgrounds/new" element={<New />} />
             <Route path="/campgrounds/:campgroundId" element={<Show />} />
             <Route path="/campgrounds/:campgroundId/edit" element={<Edit />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />
         </Router>
+        <ToastContainer />
       </CampgroundProvider>
     </div>
   );

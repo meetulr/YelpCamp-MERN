@@ -69,9 +69,10 @@ function Show() {
       <div className="card-body p-0 rounded-lg">
         <figure><img src={campground.image} alt="Shoes" className="rounded-t-2xl" /></figure>
         <div className="card-body -my-5">
-          <div className="mb-4">
+          <div className="mb-4 space-y-2">
             <h2 className="card-title">{campground.title}</h2>
             <p className="text-base text-stone-600">{campground.location}</p>
+            <p className="font-semibold">{`$${campground.price}/night`}</p>
             <p>{`${campground.description}`}</p>
           </div>
           <div className="card-actions md:justify-around lg:justify-end">
