@@ -13,3 +13,15 @@ export const getCampground = async (campgroundId) => {
   const res = await axios.get(API_URL + campgroundId);
   return res.data;
 }
+
+// create campground
+export const createCampground = async (campgroundData) => {
+  const res = await axios.post(API_URL, campgroundData);
+  return res.data;
+}
+
+// updateCampground
+export const updateCampground = async (campgroundId, campgroundData) => {
+  const res = await axios.put(API_URL + campgroundId, campgroundData);
+  return res.data;
+}

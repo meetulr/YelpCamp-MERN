@@ -15,7 +15,10 @@ const getCampgrounds = async (req, res) => {
 // @route   /api/campgrounds/new
 // @access  Private
 const createCampground = async (req, res) => {
-  const campground = new Campground(req.body.campground);
+  console.log("hitting create campground");
+  const campgroundData = req.body;
+  campgroundData.image = "https://source.unsplash.com/collection/483251";
+  const campground = new Campground(campgroundData);
   await campground.save();
   res.json(campground);
 }
@@ -35,8 +38,11 @@ const getCampground = async (req, res) => {
 // @route   /api/campgrounds/:id/edit
 // @access  Private
 const updateCampground = async (req, res) => {
+  console.log("hitting update campground");
   const { id } = req.params;
-  const campground = await Campground.findByIdAndUpdate(id, req.body.campground, { new: true });
+  const campgroundData = req.body;
+  campgroundData.image = "https://source.unsplash.com/collection/483251";
+  const campground = await Campground.findByIdAndUpdate(id, campgroundData, { new: true });
   res.json(campground);
 }
 
@@ -45,6 +51,7 @@ const updateCampground = async (req, res) => {
 // @route   /api/campgrounds/:id/edit
 // @access  Private
 const deleteCampground = async (req, res) => {
+  console.log("hitting delete campground");
   const { id } = req.params;
   const campground = await Campground.findByIdAndDelete(id);
   res.json(campground);

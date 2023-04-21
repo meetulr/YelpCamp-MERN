@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 function IndexCampground({ campground }) {
   const campDesc = campground.description.slice(0, 100);
@@ -23,8 +22,5 @@ function IndexCampground({ campground }) {
   )
 }
 
-IndexCampground.propTypes = {
-  children: PropTypes.object.isRequired,
-}
 
 export default IndexCampground
