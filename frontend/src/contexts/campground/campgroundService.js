@@ -8,7 +8,7 @@ export const getCampgrounds = async () => {
   return res.data;
 }
 
-// get selected campground
+// get campground
 export const getCampground = async (campgroundId) => {
   const res = await axios.get(API_URL + campgroundId);
   return res.data;
@@ -23,5 +23,11 @@ export const createCampground = async (campgroundData) => {
 // update campground
 export const updateCampground = async (campgroundId, campgroundData) => {
   const res = await axios.put(API_URL + campgroundId, campgroundData);
+  return res.data;
+}
+
+// delete campground
+export const deleteCampground = async(campgroundId) => {
+  const res = await axios.delete(API_URL + campgroundId);
   return res.data;
 }

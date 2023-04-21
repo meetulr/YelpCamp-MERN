@@ -16,7 +16,7 @@ function New() {
   const { title, location, price, description, image } = formData;
 
 
-  const { campground, loading, dispatch } = useContext(CampgroundContext);
+  const { loading, dispatch } = useContext(CampgroundContext);
 
   const params = useParams();
   const { campgroundId } = params;
