@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import CampgroundContext from "../contexts/campground/campgroundContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getCampground, updateCampground } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
 
@@ -16,7 +16,7 @@ function New() {
   const { title, location, price, description, image } = formData;
 
 
-  const { loading, dispatch } = useContext(CampgroundContext);
+  const { campground, loading, dispatch } = useContext(CampgroundContext);
 
   const params = useParams();
   const { campgroundId } = params;
@@ -180,6 +180,9 @@ function New() {
         </div> */}
 
         <div className="flex justify-end">
+          <button className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 mr-2" type="submit">
+            <Link to={`/campgrounds/${campground._id}`}>Go back</Link>
+          </button>
           <button className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400" type="submit">Submit</button>
         </div>
       </form >
