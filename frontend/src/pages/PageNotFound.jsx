@@ -8,6 +8,8 @@ function PageNotFound() {
   useEffect(() => {
     toast.error("Page not found");
     navigate("/campgrounds");
+
+    // eslint-disable-next-line
   }, [])
 
   return (

@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
 const campgroundRoutes = require("./routes/campgroundsRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 const connectDB = require("./config/db");
 const ExpressError = require("./utils/ExpressError");
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/campgrounds", campgroundRoutes);
+app.use("/api/campgrounds/:id/reviews", reviewRoutes);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page not found", 404));

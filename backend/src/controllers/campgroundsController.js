@@ -11,7 +11,7 @@ const getCampgrounds = async (req, res) => {
 }
 
 
-// @desc    get all the campgrounds
+// @desc    create a campground
 // @route   /api/campgrounds/new
 // @access  Private
 const createCampground = async (req, res) => {
@@ -22,18 +22,18 @@ const createCampground = async (req, res) => {
 }
 
 
-// @desc    get all the campgrounds
+// @desc    get selected campground
 // @route   /api/campgrounds/:id
 // @access  Public
 const getCampground = async (req, res) => {
   console.log("hitting selected campground");
-  const campground = await Campground.findById(req.params.id);
+  const campground = await Campground.findById(req.params.id).populate('reviews');
   res.json(campground);
 }
 
 
-// @desc    get all the campgrounds
-// @route   /api/campgrounds/:id/edit
+// @desc    update selected campground
+// @route   /api/campgrounds/:id
 // @access  Private
 const updateCampground = async (req, res) => {
   console.log("hitting update campground");
@@ -43,8 +43,8 @@ const updateCampground = async (req, res) => {
 }
 
 
-// @desc    get all the campgrounds
-// @route   /api/campgrounds/:id/edit
+// @desc    delete selected campground
+// @route   /api/campgrounds/:id
 // @access  Private
 const deleteCampground = async (req, res) => {
   console.log("hitting delete campground");

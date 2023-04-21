@@ -119,7 +119,7 @@ function New() {
         onSubmit={handleSubmit}>
 
         <div className="mb-6">
-          <label className="block mb-2 font-bold text-gray-700" for="title">Title</label>
+          <label className="block mb-2 font-bold text-gray-700" htmlfor="title">Title</label>
           <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
             type="text"
             id="title"
@@ -130,7 +130,7 @@ function New() {
         </div>
 
         <div className="mb-6">
-          <label className="block mb-2 font-bold text-gray-700" for="location">Location</label>
+          <label className="block mb-2 font-bold text-gray-700" htmlfor="location">Location</label>
           <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
             type="location"
             id="location"
@@ -141,7 +141,7 @@ function New() {
         </div>
 
         <div className="mb-6">
-          <label for="price" className="block mb-2 font-bold text-gray-700">Campground Price</label>
+          <label htmlfor="price" className="block mb-2 font-bold text-gray-700">Campground Price</label>
           <div className="relative flex items-stretch w-full">
             <span className="flex items-center justify-center w-10 h-10 text-gray-100 bg-zinc-600 rounded-l">
               $
@@ -157,10 +157,10 @@ function New() {
         </div>
 
         <div className="mb-6">
-          <label className="block mb-2 font-bold text-gray-700" for="description">Description</label>
+          <label className="block mb-2 font-bold text-gray-700" htmlfor="description">Description</label>
           <textarea className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
             id="description"
-            rows="4"
+            rows="3"
             placeholder="Describe your camp in concise words"
             value={description}
             onChange={handleChange}
@@ -168,7 +168,7 @@ function New() {
         </div>
 
         <div className="mb-6">
-          <label className="block mb-2 font-bold text-gray-700" for="image">Enter Image URL</label>
+          <label className="block mb-2 font-bold text-gray-700" htmlfor="image">Enter Image URL</label>
           <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"
             type="text"
             id="image"
