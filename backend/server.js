@@ -3,9 +3,12 @@ const dotenv = require("dotenv").config();
 const colors = require("colors");
 const connectDB = require("./config/db");
 const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 const ExpressError = require("./utils/ExpressError");
 const campgroundRoutes = require("./routes/campgroundsRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const User = require("./models/userModel");
 
 const PORT = process.env.PORT || 8000;
 
@@ -26,6 +29,13 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 connectDB();
 
 app.use(express.json());
@@ -33,6 +43,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("hello")
+})
+
+app.use("/fakeuser", async(req,res) => {
+  const user = new User({email: "test@getMaxListeners.com", username:"test"});
+  const newUser = await User.register(user, "test");
+  res.json(newUser);  
 })
 
 app.use("/api/campgrounds", campgroundRoutes);
