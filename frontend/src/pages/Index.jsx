@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import CampgroundContext from "../contexts/campground/campgroundContext";
 import { getCampgrounds } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
@@ -20,7 +19,7 @@ function Index() {
 
         dispatch({
           type: "GET_CAMPGROUNDS",
-          payload: data
+          payload: data.reverse()
         })
 
         console.log(data);

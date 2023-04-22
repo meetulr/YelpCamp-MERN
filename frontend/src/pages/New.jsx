@@ -54,6 +54,7 @@ function New() {
     try {
       const data = await createCampground(campgroundData);
       console.log(data);
+      toast.success("successfully created a new campground");
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {
       console.log(error);
@@ -136,7 +137,7 @@ function New() {
         </div>
 
         {/* <div class="mb-6">
-          <label for="images" className="block mb-2 font-bold text-gray-700">Choose Images</label>
+          <label htmlfor="images" className="block mb-2 font-bold text-gray-700">Choose Images</label>
           <input type="file" className="file-input file-input-md w-full  text-gray-700 bg-gray-200"
             id="images"
             multiple />

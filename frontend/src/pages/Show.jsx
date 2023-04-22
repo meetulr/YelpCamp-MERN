@@ -34,21 +34,28 @@ function Show() {
       try {
         const data = await getCampground(campgroundId);
 
+        if(!data){
+          toast.error("can't find that campground");
+          navigate("/campgrounds");
+          return;
+        }
+
         dispatch({
           type: "GET_CAMPGROUND",
           payload: data
         })
 
         setReviews(data.reviews.slice().reverse());
-
         console.log(data);
       } catch (error) {
         console.log(error);
-
-        dispatch({
-          type: "STOP_LOADING"
-        })
+        const message = error.response.data.message;
+        toast.error(message);
       }
+
+      dispatch({
+        type: "STOP_LOADING"
+      })
     }
 
     fetchCampground();
@@ -65,9 +72,12 @@ function Show() {
     try {
       const data = await deleteCampground(campgroundId);
       console.log(data);
+      toast.success("successfully deleted the campground");
       navigate(`/campgrounds`);
     } catch (error) {
       console.log(error);
+      const message = error.response.data.message;
+      toast.error(message);
     }
 
     dispatch({
@@ -92,11 +102,20 @@ function Show() {
     try {
       const res = await axios.post(`/api/campgrounds/${campground._id}/reviews`, { review: newReview });
       console.log(res.data);
+      toast.success("made a new review");
       setReviews((prevState) => (
         [newReview, ...reviews]
       ))
+
+      setFormData({
+        rating: 3,
+        body: ""
+      })
+
     } catch (error) {
       console.log(error);
+      const message = error.response.data.message;
+      toast.error(message);
     }
 
   }
@@ -105,12 +124,14 @@ function Show() {
     try {
       const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
       console.log(res.data);
-
+      toast.success("successfully deleted the review");  
       setReviews(reviews.filter((reviewItem) => {
         return reviewItem._id != reviewId;
       }))
     } catch (error) {
       console.log(error);
+      const message = error.response.data.message;
+      toast.error(message);
     }
   }
 

@@ -1,14 +1,30 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
+const connectDB = require("./config/db");
+const session = require("express-session");
+const ExpressError = require("./utils/ExpressError");
 const campgroundRoutes = require("./routes/campgroundsRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-const connectDB = require("./config/db");
-const ExpressError = require("./utils/ExpressError");
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+const sessionConfig = {
+  secret: 'thisshouldbeabettersecret!',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    sameSite: 'none',
+    secure: true,
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}
+
+app.use(session(sessionConfig));
 
 connectDB();
 

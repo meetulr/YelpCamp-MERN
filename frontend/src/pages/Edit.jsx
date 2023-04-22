@@ -13,14 +13,15 @@ function New() {
     description: "",
     image: ""
   });
-
+  
   const { title, location, price, description, image } = formData;
 
 
   const { campground, loading, dispatch } = useContext(CampgroundContext);
-
+  
   const params = useParams();
   const { campgroundId } = params;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCampground = async () => {
@@ -30,6 +31,12 @@ function New() {
 
       try {
         const data = await getCampground(campgroundId);
+
+        if (!data) {
+          toast.error("can't find that campground");
+          navigate("/campgrounds");
+          return;
+        }
 
         setForm(data);
 
@@ -61,7 +68,6 @@ function New() {
     })
   }
 
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData((prevState) => (
@@ -75,7 +81,7 @@ function New() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!title || !location || !price || !description || !image){
+    if (!title || !location || !price || !description || !image) {
       toast.error("Please fill out all fields");
       return;
     }
@@ -97,6 +103,7 @@ function New() {
     try {
       const data = await updateCampground(campgroundId, campgroundData);
       console.log(data);
+      toast.success("successfully edited the campground");
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {
       console.log(error);
@@ -152,7 +159,7 @@ function New() {
               aria-label="price"
               value={price}
               onChange={handleChange}
- />
+            />
           </div>
         </div>
 
@@ -179,7 +186,7 @@ function New() {
         </div>
 
         {/* <div class="mb-6">
-          <label for="images" className="block mb-2 font-bold text-gray-700">Choose Images</label>
+          <label htmlfor="images" className="block mb-2 font-bold text-gray-700">Choose Images</label>
           <input type="file" className="file-input file-input-md w-full  text-gray-700 bg-gray-200"
             id="images"
             multiple />
