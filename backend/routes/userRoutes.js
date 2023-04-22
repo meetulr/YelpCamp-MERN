@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const users = require("../controllers/userController");
+const passport = require('passport');
 
-// router.route("/register")
-//   .get(users.register);
+router.post("/users/register", catchAsync(users.register));
 
-// router.route("/login")
-    
-// router.get('/logout', users.logout);
-
+router.post("/users/login", passport.authenticate('local'), catchAsync(users.login));
 
 module.exports = router;

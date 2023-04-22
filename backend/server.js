@@ -8,6 +8,7 @@ const LocalStrategy = require("passport-local");
 const ExpressError = require("./utils/ExpressError");
 const campgroundRoutes = require("./routes/campgroundsRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const userRoutes = require("./routes/userRoutes");
 const User = require("./models/userModel");
 
 const PORT = process.env.PORT || 8000;
@@ -45,12 +46,8 @@ app.get("/", (req, res) => {
   res.send("hello")
 })
 
-app.use("/fakeuser", async(req,res) => {
-  const user = new User({email: "test@getMaxListeners.com", username:"test"});
-  const newUser = await User.register(user, "test");
-  res.json(newUser);  
-})
 
+app.use("/api", userRoutes);
 app.use("/api/campgrounds", campgroundRoutes);
 app.use("/api/campgrounds/:id/reviews", reviewRoutes);
 
