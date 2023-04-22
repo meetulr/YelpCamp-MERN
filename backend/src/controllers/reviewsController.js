@@ -20,7 +20,10 @@ const createReview = async (req, res) => {
 // @access  Private
 const deleteReview = async (req, res) => {
   console.log("hitting delete review");
-  res.json("you made it");
+  const { id, reviewId } = req.params;
+  const campground = await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } }, { new: true });
+  await Review.findByIdAndDelete(reviewId);
+  res.json(campground);
 }
 
 

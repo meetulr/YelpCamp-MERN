@@ -76,7 +76,7 @@ function Show() {
 
   }
 
-  const handleSubmit = async (e) => {
+  const handleReviewSubmit = async (e) => {
     e.preventDefault();
 
     if (!body) {
@@ -99,6 +99,19 @@ function Show() {
       console.log(error);
     }
 
+  }
+
+  const handleReviewDelete = async (reviewId) => {
+    try {
+      const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
+      console.log(res.data);
+
+      setReviews(reviews.filter((reviewItem) => {
+        return reviewItem._id != reviewId;
+      }))
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleChange = (e) => {
@@ -125,11 +138,12 @@ function Show() {
           rating={rating}
           body={body}
           handleChange={handleChange}
-          handleSubmit={handleSubmit}
+          handleReviewSubmit={handleReviewSubmit}
         />
 
         <ShowReviews
           reviews={reviews}
+          handleReviewDelete={handleReviewDelete}
         />
       </div>
     </div>

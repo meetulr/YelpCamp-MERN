@@ -44,9 +44,9 @@ function Navbar() {
             <span className="hamburger-bottom"></span>
           </button>
 
-          <div className={`${isHidden ? "hidden" : "absolute"} transition-all delay-500 duration-500 top-20 left-60`}>
-            <div className="card bg-slate-950">
-              <ul className="my-3 flex flex-col menu menu-horizontal px-1 leading-3 space-x-0.5">
+          <div className={`${isHidden ? "hidden opacity-0" : "absolute opacity-100"} transition-all delay-500 duration-500 top-20 right-5`}>
+            <div className="card bg-slate-900">
+              <ul className="m-3 flex flex-col menu menu-horizontal px-1 leading-3 space-x-0.5">
                 <li>
                   <Link onClick={toggleMenu} to="/" className={`p-3 ${location.pathname === "/" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
                 </li>
