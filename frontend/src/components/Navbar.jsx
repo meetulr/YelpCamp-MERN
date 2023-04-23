@@ -1,15 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import HamburgerMenu from "./HamburgerMenu";
 
 function Navbar() {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isHidden, setIsHidden] = useState(true);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    setIsHidden(!isHidden);
-  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-30">
@@ -34,31 +28,7 @@ function Navbar() {
             </div>
           </div>
 
-          <button
-            id="menu-btn"
-            className={`${isOpen ? "open" : ""} items-center block hamburger mt-3 mr-2 md:hidden focus:outline-none`}
-            onClick={toggleMenu}
-          >
-            <span className="hamburger-top"></span>
-            <span className="hamburger-middle"></span>
-            <span className="hamburger-bottom"></span>
-          </button>
-
-          <div className={`${isHidden ? "hidden opacity-0" : "absolute opacity-100"} transition-all delay-500 duration-500 top-20 right-5`}>
-            <div className="card bg-slate-900">
-              <ul className="m-3 flex flex-col menu menu-horizontal px-1 leading-3 space-x-0.5">
-                <li>
-                  <Link onClick={toggleMenu} to="/home" className={`p-3 ${location.pathname === "/home" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
-                </li>
-                <li>
-                  <Link onClick={toggleMenu} to="/campgrounds" className={`p-3 ${location.pathname === "/campgrounds" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`} >Campgrounds</Link>
-                </li>
-                <li>
-                  <Link onClick={toggleMenu} to="/campgrounds/new" className={`p-3 ${location.pathname === "/campgrounds/new" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>New Campground</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <HamburgerMenu />
         </div>
       </div>
     </div>
