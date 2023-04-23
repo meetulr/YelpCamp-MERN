@@ -34,7 +34,7 @@ function Show() {
       try {
         const data = await getCampground(campgroundId);
 
-        if(!data){
+        if (!data) {
           toast.error("can't find that campground");
           navigate("/campgrounds");
           return;
@@ -49,8 +49,8 @@ function Show() {
         console.log(data);
       } catch (error) {
         console.log(error);
-        const message = error.response.data.message;
-        toast.error(message);
+        toast.error("can't find that campground");
+        navigate("/campgrounds");
       }
 
       dispatch({
@@ -125,7 +125,7 @@ function Show() {
       const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
       console.log(res.data);
       toast.success("successfully deleted the review");
-       
+
       setReviews(reviews.filter((reviewItem) => {
         return reviewItem._id !== reviewId;
       }))

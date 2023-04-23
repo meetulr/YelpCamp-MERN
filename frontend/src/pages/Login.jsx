@@ -30,11 +30,11 @@ function Login() {
       password
     }
 
-    try {
-      dispatch({
-        type: "SET_LOADING"
-      });
+    dispatch({
+      type: "SET_LOADING"
+    });
 
+    try {
       const res = await axios.post("/api/users/login", userData);
 
       dispatch({

@@ -32,11 +32,11 @@ function Register() {
       password
     }
 
-    try {
-      dispatch({
-        type: "SET_LOADING"
-      });
+    dispatch({
+      type: "SET_LOADING"
+    });
 
+    try {
       const res = await axios.post("/api/users/register", userData);
 
       dispatch({
@@ -78,7 +78,7 @@ function Register() {
       >
 
         <h1 className="block mb-7 font-bold text-center text-3xl text-gray-500">Create an account</h1>
-        
+
         <div className="mb-6">
           <label className="block mb-2 font-bold text-gray-700" htmlfor="username">Username</label>
           <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"

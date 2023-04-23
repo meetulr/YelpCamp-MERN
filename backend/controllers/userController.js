@@ -10,7 +10,13 @@ const register = async (req, res) => {
     const { email, username, password } = req.body;
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
-    res.json(registeredUser);
+
+    const newUser = {
+      _id: registeredUser._id,
+      email: registeredUser.email
+    }
+
+    res.json(newUser);
   } catch (error) {
     res.json(error);
   }
@@ -21,11 +27,11 @@ const register = async (req, res) => {
 // @route   /api/users/login
 // @access  Public
 const login = async (req, res) => {
-  const user = {
+  const newUser = {
     _id: req.user._id,
     email: req.user.email
   }
-  res.json(user);
+  res.json(newUser);
 };
 
 
