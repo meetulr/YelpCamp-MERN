@@ -1,3 +1,5 @@
+import { useContext, useEffect } from "react";
+import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
 import { Navigate, Outlet } from "react-router-dom"
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import Spinner from "./Spinner";
@@ -5,17 +7,28 @@ import { toast } from "react-toastify";
 
 function PrivateRoute() {
 
-    const { loggedIn, loading } = useAuthStatus();
+  const { loggedIn, loading } = useAuthStatus();
 
-    if (loading) {
-      return <Spinner />
-    }
+  const { dispatch } = useContext(FromLocationContext);
 
-    if(!loggedIn){
-      toast.error("You need to be logged in");
-    }
+  const currUrl = window.location.pathname;
 
-    return loggedIn ? <Outlet /> : <Navigate to="/login" />
+  useEffect(() => {
+    dispatch({
+      type: "SET_LOCATION",
+      payload: currUrl
+    })
+  }, [dispatch, currUrl])
+
+  if (loading) {
+    return <Spinner />
   }
+
+  if (!loggedIn) {
+    toast.error("You need to be logged in");
+  }
+
+  return loggedIn ? <Outlet /> : <Navigate to="/login" />
+}
 
 export default PrivateRoute;

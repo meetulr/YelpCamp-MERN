@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
+import UserContext from "../contexts/user/userContext";
+import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import UserContext from "../contexts/user/userContext";
-import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
-function Login() {
+function Login(props) {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -14,6 +15,7 @@ function Login() {
   const { username, password } = formData;
 
   const { loading, dispatch } = useContext(UserContext);
+  const { prevUrl, dispatch: locationDispatch } = useContext(FromLocationContext);
 
   const navigate = useNavigate();
 
@@ -42,14 +44,20 @@ function Login() {
         payload: res.data
       });
 
+      console.log(prevUrl);
+
+      locationDispatch({
+        type: "CLEAR_LOCATION"
+      })
+
       toast.success("Successfully logged in");
       console.log(res.data);
-      navigate("/campgrounds");
+      navigate(prevUrl);
     } catch (error) {
       console.log(error.response.data);
       toast.error("Invalid Credentials");
     }
-
+    
     dispatch({
       type: "STOP_LOADING"
     })

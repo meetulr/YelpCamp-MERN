@@ -1,12 +1,19 @@
 import { useContext, useEffect } from "react";
 import CampgroundContext from "../contexts/campground/campgroundContext";
-import { getCampgrounds } from "../contexts/campground/campgroundService";
+import { getCampgrounds } from "../contexts/campground/campgroundService"
+import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
 import Spinner from "../components/Spinner";
 import IndexCampground from "../components/IndexCampground";
 
 
 function Index() {
   const { campgrounds, loading, dispatch } = useContext(CampgroundContext);
+
+  const { dispatch: locationDispatch } = useContext(FromLocationContext);
+
+  const currUrl = window.location.pathname;
+
+  console.log(`from ${currUrl}`);
 
   useEffect(() => {
     const fetchCampgrounds = async () => {
@@ -22,6 +29,11 @@ function Index() {
           payload: data.reverse()
         })
 
+        locationDispatch({
+          type: "SET_LOCATION",
+          payload: currUrl
+        })
+
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -33,7 +45,7 @@ function Index() {
     }
 
     fetchCampgrounds();
-  }, [dispatch])
+  }, [dispatch, locationDispatch, currUrl])
 
   if (loading) {
     return <Spinner />

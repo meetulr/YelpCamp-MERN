@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { toast } from "react-toastify";
-import axios from "axios";
 import UserContext from "../contexts/user/userContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 import Spinner from "../components/Spinner";
 
 function Register() {
@@ -45,6 +45,15 @@ function Register() {
       });
 
       console.log(res.data);
+
+      if(res.data.name === "UserExistsError"){
+        toast.error("User already exists");
+        dispatch({
+          type: "STOP_LOADING"
+        })
+        return;
+      }
+
       toast.success("Successfully registered");
       navigate("/campgrounds");
     } catch (error) {

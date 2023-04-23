@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import CampgroundContext from "../contexts/campground/campgroundContext";
 import { getCampground, deleteCampground } from "../contexts/campground/campgroundService";
+import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
 import Spinner from "../components/Spinner";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -20,6 +21,11 @@ function Show() {
   const { rating, body } = formData;
 
   const { campground, loading, dispatch } = useContext(CampgroundContext);
+  const { dispatch: locationDispatch } = useContext(FromLocationContext);
+
+  const currUrl = window.location.pathname;
+
+  console.log(`from ${currUrl}`);
 
   const params = useParams();
   const { campgroundId } = params;
@@ -45,6 +51,11 @@ function Show() {
           payload: data
         })
 
+        locationDispatch({
+          type: "SET_LOCATION",
+          payload: currUrl
+        })
+
         setReviews(data.reviews.slice().reverse());
         console.log(data);
       } catch (error) {
@@ -61,7 +72,7 @@ function Show() {
     fetchCampground();
 
     // eslint-disable-next-line
-  }, [dispatch, campgroundId])
+  }, [dispatch, locationDispatch, campgroundId, currUrl])
 
   const handleDelete = async (e) => {
     e.preventDefault();

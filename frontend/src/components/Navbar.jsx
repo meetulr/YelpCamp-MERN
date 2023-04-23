@@ -74,8 +74,8 @@ function Navbar() {
 
           {!user ? (
             <div className="ml-auto space-x-1">
-              <button onClick={handleLogin} className="btn btn-ghost"><FaSignInAlt className="mr-2" /> Login</button>
-              <button onClick={handleRegister} className="btn btn-ghost"><FaUser className="mr-2" /> Register</button>
+              <button onClick={handleLogin} className={`btn btn-ghost ${location.pathname === "/login" ? "font-bold" : ""}`}><FaSignInAlt className="mr-2" /> Login</button>
+              <button onClick={handleRegister} className={`btn btn-ghost ${location.pathname === "/register" ? "font-bold" : ""}`}><FaUser className="mr-2" /> Register</button>
             </div>
           ) : (
             <div className="ml-auto">
