@@ -9,6 +9,7 @@ import Edit from "./pages/Edit";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
 import { CampgroundProvider } from "./contexts/campground/campgroundContext";
 import { UserProvider } from "./contexts/user/userContext";
 import { ToastContainer } from "react-toastify";
@@ -22,11 +23,15 @@ function App() {
           <Router>
             <Navbar />
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/campgrounds" element={<Index />} />
-              <Route path="/campgrounds/new" element={<New />} />
+              <Route path="/campgrounds/new" element={<PrivateRoute />} >
+                <Route path="/campgrounds/new" element={<New />} />
+              </Route>
               <Route path="/campgrounds/:campgroundId" element={<Show />} />
-              <Route path="/campgrounds/:campgroundId/edit" element={<Edit />} />
+              <Route path="/campgrounds/:campgroundId/edit" element={<PrivateRoute />} >
+                <Route path="/campgrounds/:campgroundId/edit" element={<Edit />} />
+              </Route>
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<PageNotFound />} />

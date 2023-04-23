@@ -15,14 +15,12 @@ const campgroundReducer = (state, action) => {
     case "GET_CAMPGROUND":
       return {
         ...state,
-        campground: action.payload,
-        loading: false
+        campground: action.payload
       }
     case "GET_CAMPGROUNDS":
       return {
         ...state,
-        campgrounds: action.payload,
-        loading: false
+        campgrounds: action.payload
       }
     default:
       return state;

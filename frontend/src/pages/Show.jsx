@@ -60,6 +60,7 @@ function Show() {
 
     fetchCampground();
 
+    // eslint-disable-next-line
   }, [dispatch, campgroundId])
 
   const handleDelete = async (e) => {
@@ -117,14 +118,14 @@ function Show() {
       const message = error.response.data.message;
       toast.error(message);
     }
-
   }
 
   const handleReviewDelete = async (reviewId) => {
     try {
       const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
       console.log(res.data);
-      toast.success("successfully deleted the review");  
+      toast.success("successfully deleted the review");
+       
       setReviews(reviews.filter((reviewItem) => {
         return reviewItem._id != reviewId;
       }))

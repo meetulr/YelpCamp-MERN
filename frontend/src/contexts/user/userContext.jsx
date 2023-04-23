@@ -13,14 +13,14 @@ export const UserProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(userReducer, initialState);
 
-    // useEffect(() => {
-    //     if(state.user){
-    //         localStorage.setItem("user", JSON.stringify(state.user));
-    //     }
-    //     else{
-    //         localStorage.removeItem("user");
-    //     }
-    // }, [state])
+    useEffect(() => {
+        if(state.user){
+            localStorage.setItem("user", JSON.stringify(state.user));
+        }
+        else{
+            localStorage.removeItem("user");
+        }
+    }, [state])
 
     return <UserContext.Provider value={{
         ...state,

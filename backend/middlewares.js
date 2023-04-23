@@ -22,3 +22,11 @@ module.exports.validateReview = (req, res, next) => {
       next();
   }
 }
+
+module.exports.isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+      req.session.returnTo = req.originalUrl
+      res.status(401).json("Not Authorized");
+  }
+  next();
+}

@@ -25,11 +25,11 @@ function Index() {
         console.log(data);
       } catch (error) {
         console.log(error);
-
-        dispatch({
-          type: "STOP_LOADING"
-        })
       }
+      
+      dispatch({
+        type: "STOP_LOADING"
+      })
     }
 
     fetchCampgrounds();

@@ -41,18 +41,18 @@ function Login() {
         type: "SET_USER",
         payload: res.data
       });
-      
+
       toast.success("Successfully logged in");
       console.log(res.data);
       navigate("/campgrounds");
     } catch (error) {
       console.log(error.response.data);
       toast.error("Invalid Credentials");
-
-      dispatch({
-        type: "STOP_LOADING"
-      })
     }
+
+    dispatch({
+      type: "STOP_LOADING"
+    })
   }
 
   const handleChange = (e) => {
@@ -73,6 +73,8 @@ function Login() {
       <form className="p-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto bg-white rounded-md shadow-md"
         onSubmit={handleSubmit}
       >
+
+        <h1 className="block mb-7 font-bold text-center text-3xl text-gray-500">Login</h1>
 
         <div className="mb-6">
           <label className="block mb-2 font-bold text-gray-700" htmlfor="username">Username</label>

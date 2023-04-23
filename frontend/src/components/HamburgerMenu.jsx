@@ -36,7 +36,7 @@ function HamburgerMenu() {
         <div className={`${opacity ? "opacity-100 bg-slate-900" : "opacity-0 bg-slate-50"} transition-all duration-300 card`}>
           <ul className={`${opacity ? "opacity-100 bg-slate-900" : "opacity-0 bg-slate-50"} transition-all duration-300 opacity-0 m-3 flex flex-col menu menu-horizontal px-1 leading-3 space-x-0.5`}>
             <li>
-              <Link onClick={toggleMenu} to="/home" className={`p-3 ${location.pathname === "/home" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
+              <Link onClick={toggleMenu} to="/" className={`p-3 ${location.pathname === "/" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
             </li>
             <li>
               <Link onClick={toggleMenu} to="/campgrounds" className={`p-3 ${location.pathname === "/campgrounds" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`} >Campgrounds</Link>

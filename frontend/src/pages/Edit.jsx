@@ -48,14 +48,16 @@ function New() {
         console.log(data);
       } catch (error) {
         console.log(error);
-
-        dispatch({
-          type: "STOP_LOADING"
-        })
       }
+
+      dispatch({
+        type: "STOP_LOADING"
+      })
     }
 
     fetchCampground();
+
+    // eslint-disable-next-line
   }, [dispatch, campgroundId])
 
   const setForm = (data) => {

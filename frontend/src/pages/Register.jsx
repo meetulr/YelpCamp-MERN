@@ -50,11 +50,11 @@ function Register() {
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
-
-      dispatch({
-        type: "STOP_LOADING"
-      })
     }
+
+    dispatch({
+      type: "STOP_LOADING"
+    })
   }
 
   const handleChange = (e) => {
@@ -66,16 +66,19 @@ function Register() {
     ))
   }
 
-  if(loading){
+  if (loading) {
     return <Spinner />;
   }
 
   return (
     <div className="mt-24 mb-10">
+
       <form className="p-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto bg-white rounded-md shadow-md"
         onSubmit={handleSubmit}
       >
 
+        <h1 className="block mb-7 font-bold text-center text-3xl text-gray-500">Create an account</h1>
+        
         <div className="mb-6">
           <label className="block mb-2 font-bold text-gray-700" htmlfor="username">Username</label>
           <input className="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400"

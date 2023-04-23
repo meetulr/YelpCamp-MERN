@@ -17,14 +17,24 @@ const register = async (req, res) => {
 };
 
 
-// @desc    login as user
+// @desc    login user
 // @route   /api/users/login
 // @access  Public
-const login = (req, res) => {
-  res.send("successfully logged in");
+const login = async (req, res) => {
+  const user = {
+    _id: req.user._id,
+    email: req.user.email
+  }
+  res.json(user);
 };
 
-const logout = (req, res) => {
+
+// @desc    logout user
+// @route   /api/users/logout
+// @access  Private
+const logout = async (req, res) => {
+  req.logout();
+  res.json("logged out");
 };
 
 module.exports = {

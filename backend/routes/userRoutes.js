@@ -8,4 +8,6 @@ router.post("/users/register", catchAsync(users.register));
 
 router.post("/users/login", passport.authenticate('local'), catchAsync(users.login));
 
+router.get("/users/logout", catchAsync(users.logout));
+
 module.exports = router;
