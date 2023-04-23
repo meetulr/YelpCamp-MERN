@@ -118,7 +118,7 @@ function Show() {
       console.log(res.data);
       toast.success("made a new review");
       setReviews((prevState) => (
-        [res.data.review, ...reviews]
+        [res.data.newReview, ...reviews]
       ))
 
       setFormData({
@@ -144,7 +144,6 @@ function Show() {
       }))
     } catch (error) {
       console.log(error);
-      const message = error.response.data.message;
       toast.error("Not Authorized");
     }
   }

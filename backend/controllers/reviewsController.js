@@ -10,9 +10,10 @@ const createReview = async (req, res) => {
   const review = new Review(req.body.review);
   review.author = req.user._id;
   campground.reviews.push(review);
-  await review.save();
+  const newReview = await (await review.save()).populate('author');
+  console.log(newReview);
   await campground.save();
-  res.json({ review, campground });
+  res.json({ newReview, campground });
 }
 
 
