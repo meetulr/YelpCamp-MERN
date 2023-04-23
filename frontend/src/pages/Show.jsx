@@ -105,7 +105,7 @@ function Show() {
       console.log(res.data);
       toast.success("made a new review");
       setReviews((prevState) => (
-        [newReview, ...reviews]
+        [res.data.review, ...reviews]
       ))
 
       setFormData({
@@ -127,7 +127,7 @@ function Show() {
       toast.success("successfully deleted the review");
        
       setReviews(reviews.filter((reviewItem) => {
-        return reviewItem._id != reviewId;
+        return reviewItem._id !== reviewId;
       }))
     } catch (error) {
       console.log(error);

@@ -11,7 +11,7 @@ const createReview = async (req, res) => {
   campground.reviews.push(review);
   await review.save();
   await campground.save();
-  res.json(campground);
+  res.json({review, campground});
 }
 
 
