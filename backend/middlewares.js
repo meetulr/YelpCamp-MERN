@@ -1,6 +1,29 @@
 const { campgroundSchema, reviewSchema } = require("./utils/schemas");
+const Campground = require("./models/campgroundModel");
+const Review = require("./models/reviewModel");
 const ExpressError = require("./utils/ExpressError");
 
+
+module.exports.isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+      console.log("not logged in");
+      res.status(401).json("Not Authorized");
+      return;
+  }
+  next();
+}
+
+// campground middleware
+module.exports.isCampgroundAuthor = async (req, res, next) => {
+  const { id } = req.params;
+  const campground = await Campground.findById(id);
+  if (!campground.author.equals(req.user._id)) {
+      return res.json("Not authorized");
+  }
+  next();
+}
+
+// campground middleware
 module.exports.validateCampground = (req, res, next) => {
   const { error } = campgroundSchema.validate(req.body);
 
@@ -13,6 +36,17 @@ module.exports.validateCampground = (req, res, next) => {
   }
 }
 
+// review middleware
+module.exports.isReviewAuthor = async (req, res, next) => {
+  const { id, reviewId } = req.params;
+  const review = await Review.findById(reviewId);
+  if (!review.author.equals(req.user._id)) {
+      return res.json("Not Authorized");
+  }
+  next();
+}
+
+// review middleware
 module.exports.validateReview = (req, res, next) => {
   const { error } = reviewSchema.validate(req.body);
   if (error) {
@@ -21,11 +55,4 @@ module.exports.validateReview = (req, res, next) => {
   } else {
       next();
   }
-}
-
-module.exports.isLoggedIn = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-      res.status(401).json("Not Authorized");
-  }
-  next();
 }

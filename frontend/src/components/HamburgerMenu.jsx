@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
-function HamburgerMenu() {
+function HamburgerMenu({ user, handleLogout }) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [opacity, setOpacity] = useState(false);
 
   const toggleMenu = () => {
-    if(isHidden){
+    if (isHidden) {
       setOpacity(false);
 
       setTimeout(() => {
@@ -44,6 +44,20 @@ function HamburgerMenu() {
             <li>
               <Link onClick={toggleMenu} to="/campgrounds/new" className={`p-3 ${location.pathname === "/campgrounds/new" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>New Campground</Link>
             </li>
+            {!user ? (
+              <>
+                <li>
+                  <Link onClick={toggleMenu} to="/login" className={`p-3 ${location.pathname === "/login" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Login</Link>
+                </li>
+                <li>
+                  <Link onClick={toggleMenu} to="/register" className={`p-3 ${location.pathname === "/register" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Register</Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <button onClick={handleLogout} className="btn btn-ghost p-3">LOGOUT</button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

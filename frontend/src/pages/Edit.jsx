@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import CampgroundContext from "../contexts/campground/campgroundContext";
+import UserContext from "../contexts/user/userContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getCampground, updateCampground } from "../contexts/campground/campgroundService";
 import Spinner from "../components/Spinner";
@@ -13,12 +14,13 @@ function New() {
     description: "",
     image: ""
   });
-  
+
   const { title, location, price, description, image } = formData;
 
 
   const { campground, loading, dispatch } = useContext(CampgroundContext);
-  
+  const { user } = useContext(UserContext);
+
   const params = useParams();
   const { campgroundId } = params;
   const navigate = useNavigate();
@@ -33,8 +35,14 @@ function New() {
         const data = await getCampground(campgroundId);
 
         if (!data) {
-          toast.error("can't find that campground");
+          toast.error("Can't find that campground");
           navigate("/campgrounds");
+          return;
+        }
+
+        if (user._id !== data.author._id) {
+          toast.error("You're not authorized to edit this campground");
+          navigate(`/campgrounds/${campgroundId}`);
           return;
         }
 
@@ -126,6 +134,8 @@ function New() {
     <div className="mt-24 mb-10">
       <form className="p-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto bg-white rounded-md shadow-md"
         onSubmit={handleSubmit}>
+
+        <h1 className="block mb-7 font-bold text-center text-3xl text-gray-500">Edit campground</h1>
 
         <div className="mb-6">
           <label className="block mb-2 font-bold text-gray-700" htmlfor="title">Title</label>

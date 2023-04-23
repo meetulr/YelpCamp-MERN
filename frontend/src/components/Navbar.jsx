@@ -73,17 +73,17 @@ function Navbar() {
           </div>
 
           {!user ? (
-            <div className="ml-auto space-x-1">
+            <div className="hidden md:flex ml-auto space-x-1">
               <button onClick={handleLogin} className={`btn btn-ghost ${location.pathname === "/login" ? "font-bold" : ""}`}><FaSignInAlt className="mr-2" /> Login</button>
               <button onClick={handleRegister} className={`btn btn-ghost ${location.pathname === "/register" ? "font-bold" : ""}`}><FaUser className="mr-2" /> Register</button>
             </div>
           ) : (
-            <div className="ml-auto">
+            <div className="hidden md:flex ml-auto">
               <button onClick={handleLogout} className="btn btn-ghost"><FaSignOutAlt className="mr-2" /> LOGOUT</button>
             </div>
           )}
 
-          <HamburgerMenu />
+          <HamburgerMenu user={user} handleLogout={handleLogout}/>
         </div>
       </div>
     </div>

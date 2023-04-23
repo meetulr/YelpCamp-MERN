@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const campgrounds = require("../controllers/campgroundsController");
 const catchAsync = require("../utils/catchAsync");
-const { validateCampground, isLoggedIn } = require("../middlewares");
+const { validateCampground, isLoggedIn, isCampgroundAuthor } = require("../middlewares");
 
 router.route("/")
   .get(catchAsync(campgrounds.getCampgrounds))
@@ -11,8 +11,8 @@ router.route("/")
 
 router.route("/:id")
   .get(catchAsync(campgrounds.getCampground))
-  .put(isLoggedIn, validateCampground, catchAsync(campgrounds.updateCampground))
-  .delete(isLoggedIn, catchAsync(campgrounds.deleteCampground))
+  .put(isLoggedIn, isCampgroundAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
+  .delete(isLoggedIn, isCampgroundAuthor, catchAsync(campgrounds.deleteCampground))
 
 
 module.exports = router;
