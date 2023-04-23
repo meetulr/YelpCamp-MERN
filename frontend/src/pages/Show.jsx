@@ -145,7 +145,7 @@ function Show() {
     } catch (error) {
       console.log(error);
       const message = error.response.data.message;
-      toast.error(message);
+      toast.error("Not Authorized");
     }
   }
 

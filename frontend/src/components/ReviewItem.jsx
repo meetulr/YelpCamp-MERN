@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import UserContext from '../contexts/user/userContext';
 import { FaTrash } from 'react-icons/fa';
 
 function ReviewItem({ reviewItem, handleReviewDelete }) {
+  const { user } = useContext(UserContext);
+
   const stars = reviewItem.rating;
 
   return (
@@ -24,12 +28,18 @@ function ReviewItem({ reviewItem, handleReviewDelete }) {
             ))}
           </div>
 
-          <div onClick={() => handleReviewDelete(reviewItem._id)}><FaTrash /></div>
+          {user && user._id === reviewItem.author._id ? (
+            <div onClick={() => handleReviewDelete(reviewItem._id)}><FaTrash /></div>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="chat chat-start">
           <div className="chat-bubble">{reviewItem.body}</div>
         </div>
+
+        <p className='text-stone-600 italic mt-1 ml-2'>- Review by {reviewItem.author.username}</p>
       </div>
     </div>
   )

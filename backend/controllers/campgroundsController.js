@@ -28,7 +28,12 @@ const createCampground = async (req, res) => {
 // @access  Public
 const getCampground = async (req, res) => {
   console.log("hitting selected campground");
-  const campground = await Campground.findById(req.params.id).populate('reviews').populate('author');
+  const campground = await Campground.findById(req.params.id).populate({
+    path: 'reviews',
+    populate: {
+      path: 'author'
+    }
+  }).populate('author');
   res.json(campground);
 }
 
