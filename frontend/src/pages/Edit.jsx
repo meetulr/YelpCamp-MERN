@@ -95,14 +95,6 @@ function New() {
       boolean = false;
     }
 
-    // Files
-    if (e.target.files) {
-      setFormData((prevState) => ({
-        ...prevState,
-        images: e.target.files
-      }))
-    }
-
     if (e.target.files) {
       setNewImages(e.target.files);
     }
