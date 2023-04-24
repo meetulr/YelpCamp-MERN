@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../contexts/user/userContext";
+import CarouselComponent from "./CarouselComponent";
 
-function ShowCampground({ campground, author, handleDelete }) {
+function ShowCampground({ campground, author, images, handleDelete }) {
   const { user } = useContext(UserContext);
+  console.log(campground.images);
 
   console.log(campground);
   return (
     <div className="bg-stone-400 card w-96 md:w-1/2 shadow-xl">
       <div className="card-body p-0 rounded-lg">
-        <figure><img src={campground.image} alt="Shoes" className="rounded-t-2xl" /></figure>
+        <CarouselComponent images={images} />
+
         <div className="flex flex-col justify-between card-body -my-5">
           <div className="mb-4 space-y-2">
             <h2 className="card-title">{campground.title}</h2>

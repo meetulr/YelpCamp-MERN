@@ -36,26 +36,26 @@ function HamburgerMenu({ user, handleLogout }) {
         <div className={`${opacity ? "opacity-100 bg-slate-900" : "opacity-0 bg-slate-50"} transition-all duration-300 card`}>
           <ul className={`${opacity ? "opacity-100 bg-slate-900" : "opacity-0 bg-slate-50"} transition-all duration-300 opacity-0 m-3 flex flex-col menu menu-horizontal px-1 leading-3 space-x-0.5`}>
             <li>
-              <Link onClick={toggleMenu} to="/" className={`p-3 ${location.pathname === "/" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
+              <Link onClick={toggleMenu} to="/" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Home</Link>
             </li>
             <li>
-              <Link onClick={toggleMenu} to="/campgrounds" className={`p-3 ${location.pathname === "/campgrounds" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`} >Campgrounds</Link>
+              <Link onClick={toggleMenu} to="/campgrounds" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/campgrounds" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`} >Campgrounds</Link>
             </li>
             <li>
-              <Link onClick={toggleMenu} to="/campgrounds/new" className={`p-3 ${location.pathname === "/campgrounds/new" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>New Campground</Link>
+              <Link onClick={toggleMenu} to="/campgrounds/new" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/campgrounds/new" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>New Campground</Link>
             </li>
             {!user ? (
               <>
                 <li>
-                  <Link onClick={toggleMenu} to="/login" className={`p-3 ${location.pathname === "/login" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Login</Link>
+                  <Link onClick={toggleMenu} to="/login" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/login" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Login</Link>
                 </li>
                 <li>
-                  <Link onClick={toggleMenu} to="/register" className={`p-3 ${location.pathname === "/register" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Register</Link>
+                  <Link onClick={toggleMenu} to="/register" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/register" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Register</Link>
                 </li>
               </>
             ) : (
               <li>
-                <button onClick={handleLogout} className="btn btn-ghost p-3">LOGOUT</button>
+                <button onClick={handleLogout} className="hover:bg-transparent hover:text-white btn btn-ghost p-3">LOGOUT</button>
               </li>
             )}
           </ul>

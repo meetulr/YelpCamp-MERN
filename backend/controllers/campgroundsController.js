@@ -1,5 +1,5 @@
 const Campground = require("../models/campgroundModel");
-
+const { cloudinary } = require("../cloudinary");
 
 // @desc    get all the campgrounds
 // @route   /api/campgrounds
@@ -17,6 +17,7 @@ const getCampgrounds = async (req, res) => {
 const createCampground = async (req, res) => {
   console.log("hitting create campground");
   const campground = new Campground(req.body.campground);
+  campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
   campground.author = req.user._id;
   await campground.save();
   res.json(campground);
@@ -45,6 +46,15 @@ const updateCampground = async (req, res) => {
   console.log("hitting update campground");
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, req.body.campground, { new: true });
+  const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+  campground.images.push(...imgs);
+  await campground.save();
+  if (req.body.deleteImages && req.body.deleteImages.length) {
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+  }
   res.json(campground);
 }
 

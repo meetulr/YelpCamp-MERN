@@ -18,6 +18,7 @@ function Show() {
 
   const [reviews, setReviews] = useState([]);
   const [author, setAuthor] = useState({});
+  const [images, setImages] = useState([]);
 
   const { rating, body } = formData;
 
@@ -59,6 +60,7 @@ function Show() {
 
         setAuthor(data.author);
         setReviews(data.reviews.slice().reverse());
+        setImages(data.images);
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -165,6 +167,7 @@ function Show() {
     <div className="md:max-w-2xl lg:max-w-4xl mx-auto flex flex-col md:flex-row mt-24 mb-10 justify-beetween space-y-6">
       <ShowCampground
         campground={campground}
+        images={images}
         author={author}
         handleDelete={handleDelete} />
 
