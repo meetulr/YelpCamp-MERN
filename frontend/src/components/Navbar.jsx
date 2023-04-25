@@ -11,6 +11,9 @@ function Navbar() {
   const location = useLocation();
   const { user, loading, dispatch } = useContext(UserContext);
 
+  const showNavbarRegex = /^\/(campgrounds|login|register)/;
+  const showNavbar = (location.pathname.match(showNavbarRegex) !== null);
+
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -35,7 +38,7 @@ function Navbar() {
 
       toast.success("Successfully logged out");
       console.log(res.data);
-      navigate("/campgrounds");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +53,7 @@ function Navbar() {
   }
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-30">
+    <div className={`${!showNavbar ? "hidden" : "fixed top-0 left-0 right-0 z-30"}`}>
       <div data-theme="dark">
         <div className="relative navbar bg-base-100 justify-between">
           <div>
@@ -83,7 +86,7 @@ function Navbar() {
             </div>
           )}
 
-          <HamburgerMenu user={user} handleLogout={handleLogout}/>
+          <HamburgerMenu user={user} handleLogout={handleLogout} />
         </div>
       </div>
     </div>
