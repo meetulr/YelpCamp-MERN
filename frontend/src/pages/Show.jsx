@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import ShowCampground from "../components/ShowCampground";
 import ShowReviewForm from "../components/ShowReviewForm";
 import ShowReviews from "../components/ShowReviews";
+import ShowMapBox from "../components/ShowMapBox";
 
 function Show() {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ function Show() {
   const [reviews, setReviews] = useState([]);
   const [author, setAuthor] = useState({});
   const [images, setImages] = useState([]);
+  const [coordinates, setCoordinates] = useState({});
 
   const { rating, body } = formData;
 
@@ -61,6 +63,7 @@ function Show() {
         setAuthor(data.author);
         setReviews(data.reviews.slice().reverse());
         setImages(data.images);
+        setCoordinates(data.geometry.coordinates);
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -107,6 +110,11 @@ function Show() {
 
     if (!body) {
       toast.error("can't submit an empty review");
+      return;
+    }
+
+    if (body.length > 150) {
+      toast.error("review must be less than 150 characters");
       return;
     }
 
@@ -164,26 +172,35 @@ function Show() {
   }
 
   return (
-    <div className="md:max-w-2xl lg:max-w-4xl mx-auto flex flex-col md:flex-row mt-24 mb-10 justify-beetween space-y-6">
-      <ShowCampground
-        campground={campground}
-        images={images}
-        author={author}
-        handleDelete={handleDelete} />
+    <div className="flex flex-col">
+      <div className="md:max-w-2xl lg:max-w-4xl mx-auto flex flex-col md:flex-row mt-24 mb-10 justify-beetween space-y-6">
+        <ShowCampground
+          campground={campground}
+          images={images}
+          author={author}
+          handleDelete={handleDelete} />
 
-      <div className="flex flex-col mb-6 w-96 md:w-2/5 lg:w-5/12 mx-auto">
-        <ShowReviewForm
-          rating={rating}
-          body={body}
-          handleChange={handleChange}
-          handleReviewSubmit={handleReviewSubmit}
-        />
+        <div className="flex flex-col mb-6 w-96 md:w-2/5 lg:w-5/12 mx-auto">
+          {coordinates.length ? (
+            <ShowMapBox coordinates={coordinates} />
+          ) : (
+            <></>
+          )}
 
-        <ShowReviews
-          reviews={reviews}
-          handleReviewDelete={handleReviewDelete}
-        />
+          <ShowReviewForm
+            rating={rating}
+            body={body}
+            handleChange={handleChange}
+            handleReviewSubmit={handleReviewSubmit}
+          />
+
+        </div>
       </div>
+
+      <ShowReviews
+        reviews={reviews}
+        handleReviewDelete={handleReviewDelete}
+      />
     </div>
   )
 }

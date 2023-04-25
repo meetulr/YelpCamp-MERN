@@ -7,7 +7,7 @@ function ShowReviewForm({ rating, body, handleChange, handleReviewSubmit }) {
   return (
     <>
       {user ? (
-        <form onSubmit={handleReviewSubmit} className="mb-10">
+        <form onSubmit={handleReviewSubmit} className="mb-10 mt-5 md:mt-10">
           <h2 className="block mb-2 font-bold text-gray-900 text-2xl md:-mt-3">Leave a review</h2>
           <div>
             <label className="block mb-2 font-bold text-gray-500" htmlfor="rating">Rating</label>

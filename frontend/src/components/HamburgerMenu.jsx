@@ -55,7 +55,7 @@ function HamburgerMenu({ user, handleLogout }) {
               </>
             ) : (
               <li>
-                <button onClick={handleLogout} className="hover:bg-transparent hover:text-white btn btn-ghost p-3">LOGOUT</button>
+                <button onClick={handleLogout} className="hover:bg-transparent hover:text-white btn btn-ghost p-3">Logout</button>
               </li>
             )}
           </ul>
