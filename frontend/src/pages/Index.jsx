@@ -4,6 +4,7 @@ import { getCampgrounds } from "../contexts/campground/campgroundService"
 import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
 import Spinner from "../components/Spinner";
 import IndexCampground from "../components/IndexCampground";
+import IndexMapBox from "../components/IndexMapBox";
 
 
 function Index() {
@@ -38,7 +39,7 @@ function Index() {
       } catch (error) {
         console.log(error);
       }
-      
+
       dispatch({
         type: "STOP_LOADING"
       })
@@ -52,8 +53,14 @@ function Index() {
   }
 
   return (
-    <div className="mx-6 my-14">
-      <h1 className="text-3xl text-center font-bold mt-10 mb-0">All Campgrounds</h1>
+    <div className="mx-6 my-16">
+      {campgrounds.length ? (
+        <IndexMapBox campgrounds={campgrounds} />
+      ) : (
+        <></>
+      )}
+
+      <h1 className="text-3xl text-center font-bold mt-9 mb-0">All Campgrounds</h1>
 
       <div className="flex flex-wrap space-y-7 md:space-y-10 mx-auto justify-around">
         {campgrounds.map((campground) => (

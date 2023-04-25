@@ -84,25 +84,26 @@ function Show() {
   const handleDelete = async (e) => {
     e.preventDefault();
 
-    dispatch({
-      type: "SET_LOADING"
-    })
+    if (window.confirm("You sure you want to delete this Campground?")) {
+      dispatch({
+        type: "SET_LOADING"
+      })
 
-    try {
-      const data = await deleteCampground(campgroundId);
-      console.log(data);
-      toast.success("successfully deleted the campground");
-      navigate(`/campgrounds`);
-    } catch (error) {
-      console.log(error);
-      const message = error.response.data.message;
-      toast.error(message);
+      try {
+        const data = await deleteCampground(campgroundId);
+        console.log(data);
+        toast.success("successfully deleted the campground");
+        navigate(`/campgrounds`);
+      } catch (error) {
+        console.log(error);
+        const message = error.response.data.message;
+        toast.error(message);
+      }
+
+      dispatch({
+        type: "STOP_LOADING"
+      })
     }
-
-    dispatch({
-      type: "STOP_LOADING"
-    })
-
   }
 
   const handleReviewSubmit = async (e) => {
@@ -144,17 +145,19 @@ function Show() {
   }
 
   const handleReviewDelete = async (reviewId) => {
-    try {
-      const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
-      console.log(res.data);
-      toast.success("successfully deleted the review");
+    if (window.confirm("Delete this review?")) {
+      try {
+        const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
+        console.log(res.data);
+        toast.success("successfully deleted the review");
 
-      setReviews(reviews.filter((reviewItem) => {
-        return reviewItem._id !== reviewId;
-      }))
-    } catch (error) {
-      console.log(error);
-      toast.error("Not Authorized");
+        setReviews(reviews.filter((reviewItem) => {
+          return reviewItem._id !== reviewId;
+        }))
+      } catch (error) {
+        console.log(error);
+        toast.error("Not Authorized");
+      }
     }
   }
 
