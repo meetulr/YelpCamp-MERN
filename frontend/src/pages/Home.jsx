@@ -59,11 +59,11 @@ function Home() {
             <h3 className="text-2xl font-bold text-slate-50">YelpCamp</h3>
             <nav className="flex justify-center space-x-3">
               {user ? (
-                <button onClick={handleLogout} className="btn btn-ghost">Logout</button>
+                <button onClick={handleLogout} className="btn btn-ghost font-bold">Logout</button>
               ) : (
                 <>
-                  <Link to="/login" className="btn btn-ghost">Login</Link>
-                  <Link to="/register" className="btn btn-ghost">Register</Link>
+                  <Link to="/login" className="btn btn-ghost font-bold">Login</Link>
+                  <Link to="/register" className="btn btn-ghost font-bold">Register</Link>
                 </>
               )}
             </nav>
