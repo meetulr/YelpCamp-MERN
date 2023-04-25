@@ -16,6 +16,8 @@ function ShowMapBox({ coordinates }) {
       zoom: 10
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     new mapboxgl.Marker({
       color: "#154c79"
     })

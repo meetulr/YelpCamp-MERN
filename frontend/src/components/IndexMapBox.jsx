@@ -31,6 +31,8 @@ function IndexMapBox({ campgrounds }) {
       zoom: 3
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     map.on('load', () => {
       // Add a new source from our GeoJSON data and
       // set the 'cluster' option to true. GL-JS will
@@ -163,7 +165,7 @@ function IndexMapBox({ campgrounds }) {
   return (
     // <div className='-mx-6'>
     // </div>
-    <div ref={mapContainer} style={{ height: '450px' }} className='-mx-6' />
+    <div ref={mapContainer} style={{ height: '450px' }} className='rounded-lg my-7 md:my-0 md:-mx-6 md:rounded-none' />
   )
 }
 
