@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Campground = require("../models/campgroundModel");
 
 // @desc    register new user
 // @route   /api/users/register
@@ -34,6 +35,8 @@ const register = async (req, res, next) => {
 // @route   /api/users/login
 // @access  Public
 const login = async (req, res) => {
+  console.log("hitting login user");
+
   const newUser = {
     _id: req.user._id,
     username: req.user.username,
@@ -43,10 +46,21 @@ const login = async (req, res) => {
 };
 
 
+// @desc    get user owned campgrounds
+// @route   /api/users/:userId
+// @access  Private
+const getOwnedCampgrounds = async (req,res) => {
+  const campgrounds = await Campground.find({author: req.params.userId});
+  res.json(campgrounds);
+}
+
+
 // @desc    logout user
 // @route   /api/users/logout
 // @access  Private
 const logout = async (req, res) => {
+  console.log("hitting logout user");
+
   req.logout();
   res.json("logged out");
 };
@@ -54,5 +68,6 @@ const logout = async (req, res) => {
 module.exports = {
   register,
   login,
+  getOwnedCampgrounds,
   logout
 }

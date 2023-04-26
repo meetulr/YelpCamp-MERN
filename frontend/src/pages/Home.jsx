@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import UserContext from "../contexts/user/userContext";
 import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
-import { Link, navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -59,7 +59,10 @@ function Home() {
             <h3 className="text-2xl font-bold text-slate-50">YelpCamp</h3>
             <nav className="flex justify-center space-x-3">
               {user ? (
-                <button onClick={handleLogout} className="btn btn-ghost font-bold">Logout</button>
+                <>
+                  <Link to="/profile" className="btn btn-ghost font-bold">Profile</Link>
+                  <button onClick={handleLogout} className="btn btn-ghost font-bold">Logout</button>
+                </>
               ) : (
                 <>
                   <Link to="/login" className="btn btn-ghost font-bold">Login</Link>

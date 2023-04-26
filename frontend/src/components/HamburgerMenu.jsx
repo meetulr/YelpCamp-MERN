@@ -47,16 +47,21 @@ function HamburgerMenu({ user, handleLogout }) {
             {!user ? (
               <>
                 <li>
-                  <Link onClick={toggleMenu} to="/login" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/login" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Login</Link>
+                  <Link onClick={toggleMenu} to="/login" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/login" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>LOGIN</Link>
                 </li>
                 <li>
-                  <Link onClick={toggleMenu} to="/register" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/register" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>Register</Link>
+                  <Link onClick={toggleMenu} to="/register" className={`hover:bg-transparent hover:text-white p-3 ${location.pathname === "/register" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>REGISTER</Link>
                 </li>
               </>
             ) : (
-              <li>
-                <button onClick={handleLogout} className="hover:bg-transparent hover:text-white btn btn-ghost p-3">Logout</button>
-              </li>
+              <>
+                <li>
+                  <Link onClick={toggleMenu} to="/profile" className={`hover:bg-transparent hover:text-white p-3 mt-2 ${location.pathname === "/profile" ? "font-bold" : ""} bg-transparent hover:bg-gray-700`}>PROFILE</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="hover:bg-transparent hover:text-white btn btn-ghost p-3">Logout</button>
+                </li>
+              </>
             )}
           </ul>
         </div>

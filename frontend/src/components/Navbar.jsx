@@ -11,7 +11,7 @@ function Navbar() {
   const location = useLocation();
   const { user, loading, dispatch } = useContext(UserContext);
 
-  const showNavbarRegex = /^\/(campgrounds|login|register)/;
+  const showNavbarRegex = /^\/(campgrounds|login|register|profile)/;
   const showNavbar = (location.pathname.match(showNavbarRegex) !== null);
 
   const navigate = useNavigate();
@@ -81,7 +81,8 @@ function Navbar() {
               <button onClick={handleRegister} className={`btn btn-ghost ${location.pathname === "/register" ? "font-bold" : ""}`}><FaUser className="mr-2" /> Register</button>
             </div>
           ) : (
-            <div className="hidden md:flex ml-auto">
+            <div className="hidden md:flex ml-auto space-x-1">
+              <Link to="/profile" className={`btn btn-ghost ${location.pathname === "/profile" ? "font-bold" : ""}`}><FaUser className="mr-2" /> Profile</Link>
               <button onClick={handleLogout} className="btn btn-ghost"><FaSignOutAlt className="mr-2" /> LOGOUT</button>
             </div>
           )}

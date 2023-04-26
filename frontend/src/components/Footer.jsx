@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 function Footer() {
   const location = useLocation();
 
-  const showFooterRegex = /^\/(campgrounds|login|register)/;
+  const showFooterRegex = /^\/(campgrounds|login|register|profile)/;
   const showFooter = (location.pathname.match(showFooterRegex) !== null);
 
   return (

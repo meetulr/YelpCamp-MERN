@@ -69,11 +69,11 @@ function Index() {
 
   return (
     <div className="mx-6 my-16">
-      {/* {campgrounds.length ? (
+      {campgrounds.length ? (
         <IndexMapBox campgrounds={campgrounds} />
       ) : (
         <></>
-      )} */}
+      )}
 
       <h1 className="text-3xl text-center font-bold mt-9 mb-0">All Campgrounds</h1>
 

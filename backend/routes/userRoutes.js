@@ -3,11 +3,14 @@ const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const users = require("../controllers/userController");
 const passport = require('passport');
+const { isLoggedIn } = require('../middlewares');
 
-router.post("/users/register", catchAsync(users.register));
+router.post("/register", catchAsync(users.register));
 
-router.post("/users/login", passport.authenticate('local'), catchAsync(users.login));
+router.post("/login", passport.authenticate('local'), catchAsync(users.login));
 
-router.get("/users/logout", catchAsync(users.logout));
+router.get("/logout", catchAsync(users.logout));
+
+router.get("/:userId", isLoggedIn, catchAsync(users.getOwnedCampgrounds));
 
 module.exports = router;

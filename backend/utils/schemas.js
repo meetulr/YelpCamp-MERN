@@ -8,7 +8,8 @@ module.exports.campgroundSchema = Joi.object({
     description: Joi.string().required()
   }).required(),
   images: Joi.array(),
-  deleteImages: Joi.array()
+  deleteImages: Joi.array(),
+  deleteImages: Joi.string()
 });
 
 module.exports.reviewSchema = Joi.object({

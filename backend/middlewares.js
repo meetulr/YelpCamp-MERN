@@ -25,6 +25,7 @@ module.exports.isCampgroundAuthor = async (req, res, next) => {
 
 // campground middleware
 module.exports.validateCampground = (req, res, next) => {
+  console.log("hitting validate campground");
   const { error } = campgroundSchema.validate(req.body);
 
   if (error) {
@@ -48,6 +49,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 
 // review middleware
 module.exports.validateReview = (req, res, next) => {
+  console.log("hitting validate review");
   const { error } = reviewSchema.validate(req.body);
   if (error) {
       const msg = error.details.map(el => el.message).join(',')

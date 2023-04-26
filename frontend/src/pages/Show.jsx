@@ -106,9 +106,7 @@ function Show() {
     }
   }
 
-  const handleReviewSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleReviewSubmit = async () => {
     if (!body) {
       toast.error("can't submit an empty review");
       return;

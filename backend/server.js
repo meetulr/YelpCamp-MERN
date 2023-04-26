@@ -44,10 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get("/serverStatus", (req, res) => {
-  res.send("server running fine");
-});
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/campgrounds", campgroundRoutes);
 app.use("/api/campgrounds/:id/reviews", reviewRoutes);
 

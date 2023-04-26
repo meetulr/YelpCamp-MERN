@@ -17,7 +17,7 @@ function ShowReviewForm({ rating, body, handleChange, handleReviewSubmit }) {
             min="1"
             max="5"
             step="1"
-            value={rating}
+            value={user ? rating : "3"}
             onChange={handleChange}
           />
           <div className="flex justify-between text-xs px-2">
@@ -35,7 +35,7 @@ function ShowReviewForm({ rating, body, handleChange, handleReviewSubmit }) {
           name="body"
           rows="2"
           placeholder="Enter your review"
-          value={body}
+          value={user ? body : ""}
           onChange={handleChange}
         ></textarea>
 
