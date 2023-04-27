@@ -8,7 +8,6 @@ export const UserProvider = ({ children }) => {
 
   const initialState = {
     user,
-    ownedCampgrounds: [],
     loading: false,
   }
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import UserContext from "../contexts/user/userContext";
 import CampgroundContext from "../contexts/campground/campgroundContext";
 import FromLocationContext from "../contexts/fromLocation/fromLocationContext";
@@ -9,9 +9,12 @@ import Spinner from "../components/Spinner";
 import {toast} from "react-toastify";
 
 function Profile() {
-  const { user, ownedCampgrounds, loading, dispatch } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { dispatch: campgroundDispatch } = useContext(CampgroundContext);
   const { dispatch: locationDispatch} = useContext(FromLocationContext);
+
+  const [ownedCampgrounds, setOwnedCampgrounds] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const randNum = Math.floor(Math.random() * 300) + 1;
 
@@ -26,32 +29,25 @@ function Profile() {
     })
 
     const fetchOwnedCampgrounds = async () => {
-      dispatch({
-        type: "SET_LOADING"
-      })
+      setLoading(true);
 
       try {
         const data = await getOwnedCampgrounds(user._id);
 
-        dispatch({
-          type: "GET_OWNED_CAMPGROUNDS",
-          payload: data.reverse()
-        })
+        setOwnedCampgrounds(data.reverse());
 
         console.log(data);
       } catch (error) {
         console.log(error);
       }
 
-      dispatch({
-        type: "STOP_LOADING"
-      })
+      setLoading(false);
     }
 
     fetchOwnedCampgrounds();
 
     // eslint-disable-next-line
-  }, [dispatch])
+  }, [])
 
   const handleDelete = async (campgroundId) => {
     if (window.confirm("You sure you want to delete this Campground?")) {
@@ -62,10 +58,11 @@ function Profile() {
       try {
         const data = await deleteCampground(campgroundId);
         console.log(data);
-        toast.success("successfully deleted the campground", {autoClose: 1500});
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        toast.success("successfully deleted the campground");
+
+        setOwnedCampgrounds(ownedCampgrounds.filter((ownedCamp) => {
+          return ownedCamp._id !== campgroundId;
+        }))
       } catch (error) {
         console.log(error);
         const message = error.response.data.message;

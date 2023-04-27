@@ -15,11 +15,6 @@ const userReducer = (state, action) => {
               ...state,
               user: action.payload
           }
-      case "GET_OWNED_CAMPGROUNDS":
-        return {
-          ...state,
-          ownedCampgrounds: action.payload
-        }
       case "CLEAR_USER":
           return {
               ...state,
