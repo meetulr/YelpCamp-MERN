@@ -35,7 +35,7 @@ function Profile() {
 
         dispatch({
           type: "GET_OWNED_CAMPGROUNDS",
-          payload: data
+          payload: data.reverse()
         })
 
         console.log(data);

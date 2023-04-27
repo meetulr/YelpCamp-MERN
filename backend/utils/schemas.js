@@ -7,9 +7,14 @@ module.exports.campgroundSchema = Joi.object({
     location: Joi.string().required(),
     description: Joi.string().required()
   }).required(),
-  images: Joi.array(),
-  deleteImages: Joi.array(),
-  deleteImages: Joi.string()
+  images: Joi.alternatives().try(
+    Joi.array(),
+    Joi.string()
+  ),
+  deleteImages: Joi.alternatives().try(
+    Joi.array(),
+    Joi.string()
+  )
 });
 
 module.exports.reviewSchema = Joi.object({

@@ -53,7 +53,7 @@ function Home() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="bg-cover bg-center flex flex-col h-full w-full" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')" }}>
+      <div className="bg-cover bg-center flex flex-col h-full w-full" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2FtcGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1950&q=80')" }}>
         <div className="flex flex-col h-full max-w-6xl mx-auto p-4">
           <header className="flex justify-between items-center mb-8">
             <h3 className="text-2xl font-bold text-slate-50">YelpCamp</h3>

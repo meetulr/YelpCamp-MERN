@@ -13,17 +13,20 @@ const campgroundRoutes = require("./routes/campgroundsRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const userRoutes = require("./routes/userRoutes");
 const User = require("./models/userModel");
+const mongoSanitize = require("express-mongo-sanitize");
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
 
 const sessionConfig = {
+  name: '_dsfsf',
   secret: 'thisshouldbeabettersecret!',
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
+    // secure: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7
   }
@@ -42,6 +45,7 @@ connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(mongoSanitize());
 
 
 app.use("/api/users", userRoutes);

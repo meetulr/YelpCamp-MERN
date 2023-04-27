@@ -81,9 +81,7 @@ function Show() {
     // eslint-disable-next-line
   }, [dispatch, locationDispatch, campgroundId, currUrl])
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
+  const handleDelete = async () => {
     if (window.confirm("You sure you want to delete this Campground?")) {
       dispatch({
         type: "SET_LOADING"
@@ -106,7 +104,9 @@ function Show() {
     }
   }
 
-  const handleReviewSubmit = async () => {
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+
     if (!body) {
       toast.error("can't submit an empty review");
       return;
