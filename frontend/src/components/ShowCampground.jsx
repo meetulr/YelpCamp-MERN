@@ -27,13 +27,7 @@ function ShowCampground({ campground, author, images, handleDelete }) {
               <button onClick={handleDelete} className="btn btn-sm bg-red-600 hover:bg-red-700">Delete</button>
             </div>
           ) : (
-            <></>
-          )}
-
-          {user && user._id !== author._id ? (
-            <a className={`btn btn-sm ${user ? "" : "btn-disabled text-slate-500"} bg-purple-800 hover:bg-purple-900`} href={`mailto:${author.email}?Subject=YelpCamp: ${campground.title}`}>Contact Owner</a>
-          ) : (
-            <></>
+            <a className={`btn btn-sm bg-purple-800 hover:bg-purple-900 ${user ? "" : "btn-disabled text-slate-500"}`} href={`mailto:${author.email}?Subject=YelpCamp: ${campground.title}`}>Contact Owner</a>
           )}
         </div>
       </div>

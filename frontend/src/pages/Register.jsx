@@ -46,7 +46,7 @@ function Register() {
 
       console.log(res.data);
 
-      if(res.data.name === "UserExistsError"){
+      if (res.data.name === "UserExistsError") {
         toast.error("User already exists");
         dispatch({
           type: "STOP_LOADING"
@@ -85,6 +85,10 @@ function Register() {
       <form className="p-6 max-w-sm md:max-w-xl lg:max-w-2xl mx-auto bg-white rounded-md shadow-md"
         onSubmit={handleSubmit}
       >
+
+        <figure className="-mx-6 -mt-6 mb-6"><img
+          className="w-full rounded-t-md"
+          src="https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGdyb3VuZHN8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60" alt="campground" /></figure>
 
         <h1 className="block mb-7 font-bold text-center text-3xl text-gray-500">Create an account</h1>
 
