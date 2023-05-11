@@ -6,7 +6,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function ShowMapBox({ coordinates }) {
   const mapContainer = useRef(null);
-  console.log(coordinates);
+  // console.log(coordinates);
 
   useEffect(() => {
     const map = new mapboxgl.Map({

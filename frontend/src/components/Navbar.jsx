@@ -37,7 +37,7 @@ function Navbar() {
       });
 
       toast.success("Successfully logged out");
-      console.log(res.data);
+      // console.log(res.data);
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -3,9 +3,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const path = require("path");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const ExpressError = require("./utils/ExpressError");
@@ -19,9 +21,22 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+const store = MongoStore.create({
+  mongoUrl: process.env.DB_URL,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: process.env.SECRET
+  }
+});
+
+store.on("error", function (e) {
+  console.log("session store error", err);
+})
+
 const sessionConfig = {
+  store,
   name: '_dsfsf',
-  secret: 'thisshouldbeabettersecret!',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -51,6 +66,14 @@ app.use(mongoSanitize());
 app.use("/api/users", userRoutes);
 app.use("/api/campgrounds", campgroundRoutes);
 app.use("/api/campgrounds/:id/reviews", reviewRoutes);
+
+// serve frontend
+if (process.env.NODE_ENV === "production") {
+  // set build folder as static
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) => res.sendFile(__dirname, "../", "frontend", "build", "index.html"));
+}
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page not found", 404));

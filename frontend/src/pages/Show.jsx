@@ -29,7 +29,7 @@ function Show() {
 
   const currUrl = window.location.pathname;
 
-  console.log(`from ${currUrl}`);
+  // console.log(`from ${currUrl}`);
 
   const params = useParams();
   const { campgroundId } = params;
@@ -64,7 +64,7 @@ function Show() {
         setReviews(data.reviews.slice().reverse());
         setImages(data.images);
         setCoordinates(data.geometry.coordinates);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
         toast.error("can't find that campground");
@@ -89,7 +89,7 @@ function Show() {
 
       try {
         const data = await deleteCampground(campgroundId);
-        console.log(data);
+        // console.log(data);
         toast.success("successfully deleted the campground");
         navigate(`/campgrounds`);
       } catch (error) {
@@ -124,7 +124,7 @@ function Show() {
 
     try {
       const res = await axios.post(`/api/campgrounds/${campground._id}/reviews`, { review: newReview });
-      console.log(res.data);
+      // console.log(res.data);
       toast.success("made a new review");
       setReviews((prevState) => (
         [res.data.newReview, ...reviews]
@@ -146,7 +146,7 @@ function Show() {
     if (window.confirm("Delete this review?")) {
       try {
         const res = await axios.delete(`/api/campgrounds/${campground._id}/reviews/${reviewId}`);
-        console.log(res.data);
+        // console.log(res.data);
         toast.success("successfully deleted the review");
 
         setReviews(reviews.filter((reviewItem) => {

@@ -44,7 +44,7 @@ function Register() {
         payload: res.data
       });
 
-      console.log(res.data);
+      // console.log(res.data);
 
       if (res.data.name === "UserExistsError") {
         toast.error("User already exists");

@@ -58,7 +58,7 @@ function New() {
           payload: data
         })
 
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -156,7 +156,7 @@ function New() {
       formData.append('deleteImages', deleteImages[i].filename);
     }
 
-    console.log(formData);
+    // console.log(formData);
 
     dispatch({
       type: "SET_LOADING"
@@ -164,7 +164,7 @@ function New() {
 
     try {
       const data = await updateCampground(campgroundId, formData);
-      console.log(data);
+      // console.log(data);
       toast.success("successfully edited the campground");
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {

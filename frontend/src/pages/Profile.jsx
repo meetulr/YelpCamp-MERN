@@ -20,7 +20,7 @@ function Profile() {
 
   const currUrl = window.location.pathname;
 
-  console.log(`from ${currUrl}`);
+  // console.log(`from ${currUrl}`);
 
   useEffect(() => {
     locationDispatch({
@@ -36,7 +36,7 @@ function Profile() {
 
         setOwnedCampgrounds(data.reverse());
 
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +57,7 @@ function Profile() {
 
       try {
         const data = await deleteCampground(campgroundId);
-        console.log(data);
+        // console.log(data);
         toast.success("successfully deleted the campground");
 
         setOwnedCampgrounds(ownedCampgrounds.filter((ownedCamp) => {

@@ -8,7 +8,7 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 // @route   /api/campgrounds
 // @access  Public
 const getCampgrounds = async (req, res) => {
-  console.log("hitting all campgrounds");
+  // console.log("hitting all campgrounds");
   const campgrounds = await Campground.find();
   res.json(campgrounds);
 }
@@ -18,7 +18,7 @@ const getCampgrounds = async (req, res) => {
 // @route   /api/campgrounds/new
 // @access  Private
 const createCampground = async (req, res) => {
-  console.log("hitting create campground");
+  // console.log("hitting create campground");
   const geoData = await geocoder.forwardGeocode({
     query: req.body.campground.location,
     limit: 1
@@ -37,7 +37,7 @@ const createCampground = async (req, res) => {
 // @route   /api/campgrounds/:id
 // @access  Public
 const getCampground = async (req, res) => {
-  console.log("hitting selected campground");
+  // console.log("hitting selected campground");
   const campground = await Campground.findById(req.params.id).populate({
     path: 'reviews',
     populate: {
@@ -52,7 +52,7 @@ const getCampground = async (req, res) => {
 // @route   /api/campgrounds/:id
 // @access  Private
 const updateCampground = async (req, res) => {
-  console.log("hitting update campground");
+  // console.log("hitting update campground");
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, req.body.campground, { new: true });
   const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
@@ -72,7 +72,7 @@ const updateCampground = async (req, res) => {
 // @route   /api/campgrounds/:id
 // @access  Private
 const deleteCampground = async (req, res) => {
-  console.log("hitting delete campground");
+  // console.log("hitting delete campground");
   const { id } = req.params;
   const campground = await Campground.findByIdAndDelete(id);
   res.json(campground);

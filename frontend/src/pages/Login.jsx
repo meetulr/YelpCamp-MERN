@@ -44,14 +44,14 @@ function Login(props) {
         payload: res.data
       });
 
-      console.log(prevUrl);
+      // console.log(prevUrl);
 
       locationDispatch({
         type: "CLEAR_LOCATION"
       })
 
       toast.success("Successfully logged in");
-      console.log(res.data);
+      // console.log(res.data);
       navigate(prevUrl);
     } catch (error) {
       console.log(error.response.data);

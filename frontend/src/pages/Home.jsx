@@ -14,7 +14,7 @@ function Home() {
 
   const currUrl = window.location.pathname;
 
-  console.log(`from ${currUrl}`);
+  // console.log(`from ${currUrl}`);
 
   useEffect(() => {
     locationDispatch({
@@ -36,7 +36,7 @@ function Home() {
       });
 
       toast.success("Successfully logged out");
-      console.log(res.data);
+      // console.log(res.data);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -73,11 +73,13 @@ function Home() {
           </header>
           <main className="flex flex-col items-center justify-center flex-grow">
             <h1 className="text-5xl font-bold mb-8">YelpCamp</h1>
-            <p className="text-center">
-              Welcome to YelpCamp!
-            </p>
-            <p className="text-center mb-8">Jump right in and explore our many campgrounds. Feel free to share some of your own
-              and comment on others!</p>
+            <div className="bg-slate-800 opacity-70 mb-8 rounded-lg">
+              <p className="text-center font-bold italic mt-3 mx-3">
+                Welcome to YelpCamp!
+              </p>
+              <p className="text-center font-bold italic mb-3 mx-3">Jump right in and explore our many campgrounds. Feel free to share some of your own
+                and comment on others!</p>
+            </div>
             <Link to="/campgrounds"
               className="btn btn-secondary font-bold text-gray-900 bg-white border-white py-4 px-8 rounded-full hover:bg-gray-300 transition duration-300 ease-in-out"
             >View Campgrounds</Link>

@@ -5,7 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function IndexMapBox({ campgrounds }) {
-  console.log(campgrounds);
+  // console.log(campgrounds);
   const mapContainer = useRef(null);
 
   const features = [];

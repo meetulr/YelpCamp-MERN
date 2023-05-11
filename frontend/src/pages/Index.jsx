@@ -14,7 +14,7 @@ function Index() {
   const { dispatch: locationDispatch } = useContext(FromLocationContext);
 
   const [currPage, setCurrPage] = useState(1);
-  const [campsPerPage] = useState(20);
+  const [campsPerPage] = useState(12);
   const [totalCamps, setTotalCamps] = useState(0);
 
   const endingIdx = currPage * campsPerPage;
@@ -23,7 +23,7 @@ function Index() {
 
   const currUrl = window.location.pathname;
 
-  console.log(`from ${currUrl}`);
+  // console.log(`from ${currUrl}`);
 
   useEffect(() => {
     const fetchCampgrounds = async () => {
@@ -46,7 +46,7 @@ function Index() {
           payload: currUrl
         })
 
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }

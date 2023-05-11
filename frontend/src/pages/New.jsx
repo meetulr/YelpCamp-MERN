@@ -81,7 +81,7 @@ function New() {
       formData.append('images', images[i]);
     }
 
-    console.log(formData);
+    // console.log(formData);
 
     dispatch({
       type: "SET_LOADING"
@@ -89,7 +89,7 @@ function New() {
 
     try {
       const data = await createCampground(formData);
-      console.log(data);
+      // console.log(data);
       toast.success("successfully created a new campground");
       navigate(`/campgrounds/${data._id}`);
     } catch (error) {

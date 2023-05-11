@@ -5,9 +5,10 @@ import CarouselComponent from "./CarouselComponent";
 
 function ShowCampground({ campground, author, images, handleDelete }) {
   const { user } = useContext(UserContext);
-  console.log(campground.images);
+  
+  // console.log(campground.images);
+  // console.log(campground);
 
-  console.log(campground);
   return (
     <div className="bg-stone-400 card w-96 md:w-1/2 shadow-xl">
       <div className="card-body p-0 rounded-lg">
