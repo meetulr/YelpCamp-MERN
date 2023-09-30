@@ -7,7 +7,7 @@ import DeleteImages from "../components/DeleteImages";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
 
-function New() {
+function Edit() {
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -282,4 +282,4 @@ function New() {
   )
 }
 
-export default New
+export default Edit
